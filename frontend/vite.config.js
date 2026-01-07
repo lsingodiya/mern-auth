@@ -9,7 +9,7 @@ export default defineConfig({
     port: 3000,
     proxy: {
       '/api': {
-        target: 'http://devops-mern_backend:5000',
+        target: 'http://3.110.186.12:5000',
         changeOrigin: true,
       },
     },
