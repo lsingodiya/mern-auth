@@ -42,7 +42,7 @@ const Header = () => {
                 color: '#111',
               }}
             >
-              MERN Auth
+              DevOps Training
             </Navbar.Brand>
           </LinkContainer>
 
