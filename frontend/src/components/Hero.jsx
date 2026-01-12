@@ -24,7 +24,7 @@ const Hero = () => {
               color: '#495057',
             }}
           >
-            Production-Ready • Secure • Scalable
+            Hands-on • Real-world • Production-focused
           </div>
 
           <h1
@@ -37,10 +37,10 @@ const Hero = () => {
               color: '#111',
             }}
           >
-            MERN Authentication
+            DevOps Training Project
             <br />
             <span style={{ color: '#0d6efd' }}>
-              Built for Real Applications
+              Learn by Building Real Systems
             </span>
           </h1>
 
@@ -53,10 +53,10 @@ const Hero = () => {
               marginBottom: '3rem',
             }}
           >
-            A hardened MERN authentication boilerplate using JWT stored in
-            secure HTTP-Only cookies, Redux Toolkit for predictable state
-            management, and React Bootstrap for clean, maintainable UI —
-            designed for production from day one.
+            A practical DevOps training platform focused on real-world workflows
+            including CI/CD pipelines, containerization, cloud infrastructure,
+            monitoring, and secure authentication — designed to simulate
+            production environments, not toy examples.
           </p>
 
           <div className="d-flex align-items-center gap-3">
@@ -69,7 +69,7 @@ const Hero = () => {
                 borderRadius: '12px',
               }}
             >
-              Sign In
+              Access Training
             </Button>
 
             <Button
@@ -82,7 +82,7 @@ const Hero = () => {
                 borderRadius: '12px',
               }}
             >
-              Create Account
+              Enroll Now
             </Button>
           </div>
         </Card>
