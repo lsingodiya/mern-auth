@@ -1,6 +1,4 @@
-// import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap';
-import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { LinkContainer } from 'react-router-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -12,7 +10,6 @@ const Header = () => {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [logoutApiCall] = useLogoutMutation();
 
   const logoutHandler = async () => {
@@ -27,35 +24,76 @@ const Header = () => {
 
   return (
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg' collapseOnSelect>
+      <Navbar
+        expand="lg"
+        className="border-bottom"
+        style={{
+          backgroundColor: '#fff',
+          padding: '0.9rem 0',
+        }}
+      >
         <Container>
-          <LinkContainer to='/'>
-            <Navbar.Brand>MERN Auth- DevOps Demo Project</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand
+              style={{
+                fontWeight: 700,
+                fontSize: '1.1rem',
+                letterSpacing: '-0.02em',
+                color: '#111',
+              }}
+            >
+              MERN Auth
+            </Navbar.Brand>
           </LinkContainer>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
+
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto align-items-center gap-2">
               {userInfo ? (
-                <>
-                  <NavDropdown title={userInfo.name} id='username'>
-                    <LinkContainer to='/profile'>
-                      <NavDropdown.Item>Profile</NavDropdown.Item>
-                    </LinkContainer>
-                    <NavDropdown.Item onClick={logoutHandler}>
-                      Logout
+                <NavDropdown
+                  title={userInfo.name}
+                  id="username"
+                  align="end"
+                  style={{
+                    fontWeight: 500,
+                  }}
+                >
+                  <LinkContainer to="/profile">
+                    <NavDropdown.Item>
+                      Profile
                     </NavDropdown.Item>
-                  </NavDropdown>
-                </>
+                  </LinkContainer>
+
+                  <NavDropdown.Divider />
+
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
               ) : (
                 <>
-                  <LinkContainer to='/login'>
-                    <Nav.Link>
-                      <FaSignInAlt /> Sign In
+                  <LinkContainer to="/login">
+                    <Nav.Link
+                      style={{
+                        fontWeight: 500,
+                        color: '#495057',
+                      }}
+                    >
+                      Sign In
                     </Nav.Link>
                   </LinkContainer>
-                  <LinkContainer to='/register'>
-                    <Nav.Link>
-                      <FaSignOutAlt /> Sign Up
+
+                  <LinkContainer to="/register">
+                    <Nav.Link
+                      style={{
+                        fontWeight: 600,
+                        padding: '0.4rem 0.9rem',
+                        borderRadius: '8px',
+                        border: '1px solid #dee2e6',
+                      }}
+                    >
+                      Create Account
                     </Nav.Link>
                   </LinkContainer>
                 </>
