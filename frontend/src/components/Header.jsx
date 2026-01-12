@@ -55,13 +55,10 @@ const Header = () => {
                   title={userInfo.name}
                   id="username"
                   align="end"
-                  style={{
-                    fontWeight: 500,
-                  }}
                 >
                   <LinkContainer to="/profile">
                     <NavDropdown.Item>
-                      Profile
+                      My Profile
                     </NavDropdown.Item>
                   </LinkContainer>
 
@@ -80,7 +77,7 @@ const Header = () => {
                         color: '#495057',
                       }}
                     >
-                      Sign In
+                      Login
                     </Nav.Link>
                   </LinkContainer>
 
@@ -93,7 +90,7 @@ const Header = () => {
                         border: '1px solid #dee2e6',
                       }}
                     >
-                      Create Account
+                      Enroll
                     </Nav.Link>
                   </LinkContainer>
                 </>
