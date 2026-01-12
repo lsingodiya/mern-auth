@@ -24,7 +24,7 @@ const Hero = () => {
               color: '#495057',
             }}
           >
-            Hands-on • Real-world • Production-focused • OpenSource
+            Hands-on • Real-world • Production-focused • OpenSource  V2
           </div>
 
           <h1
