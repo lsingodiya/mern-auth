@@ -2,10 +2,8 @@
 FROM node:20-alpine AS build
 
 WORKDIR /app
-
 COPY package.json package-lock.json ./
 RUN npm ci
-
 COPY . .
 RUN npm run build
 
@@ -13,14 +11,14 @@ RUN npm run build
 # ---------- Runtime Stage ----------
 FROM nginx:alpine
 
-# Remove default nginx static files
-RUN rm -rf /usr/share/nginx/html/*
+# Remove default config
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Copy Vite build output
+# Copy custom nginx config
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy build output
 COPY --from=build /app/dist /usr/share/nginx/html
 
-# Expose HTTP port
 EXPOSE 80
-
-# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
