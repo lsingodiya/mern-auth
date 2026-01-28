@@ -6,12 +6,11 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
-    allowedHosts: [
-      'mern-app-1945846510.eu-north-1.elb.amazonaws.com',
-    ],
+    strictPort: true,
+    allowedHosts: 'all',
     proxy: {
       '/api': {
-        target: 'http://172.31.32.178:5000',
+        target: 'http://backend:5000',
         changeOrigin: true,
       },
     },
