@@ -19,9 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+/* -------------------- API -------------------- */
 app.use('/api/users', userRoutes);
 
-/* ---- Health check (read-only, side-effect free) ---- */
+/* -------------------- Health Check -------------------- */
 app.get('/health', (req, res) => {
   res.status(200).json({
     status: 'ok',
@@ -31,22 +32,25 @@ app.get('/health', (req, res) => {
   });
 });
 
+/* -------------------- Frontend -------------------- */
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
 
   app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
-  app.get('*', (req, res) =>
+  // ✅ Express 5–safe SPA fallback
+  app.use((req, res) => {
     res.sendFile(
       path.resolve(__dirname, 'frontend', 'dist', 'index.html')
-    )
-  );
+    );
+  });
 } else {
   app.get('/', (req, res) => {
     res.send('API is running...');
   });
 }
 
+/* -------------------- Errors -------------------- */
 app.use(notFound);
 app.use(errorHandler);
 
