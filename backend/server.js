@@ -9,17 +9,18 @@ import userRoutes from './routes/userRoutes.js';
 
 dotenv.config();
 
+const app = express();
 const port = process.env.PORT || 5000;
 
+/* -------------------- Database -------------------- */
 connectDB();
 
-const app = express();
-
+/* -------------------- Middlewares -------------------- */
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-/* -------------------- API -------------------- */
+/* -------------------- API Routes -------------------- */
 app.use('/api/users', userRoutes);
 
 /* -------------------- Health Check -------------------- */
@@ -32,13 +33,14 @@ app.get('/health', (req, res) => {
   });
 });
 
-/* -------------------- Frontend -------------------- */
+/* -------------------- Frontend / SPA -------------------- */
 if (process.env.NODE_ENV === 'production') {
   const __dirname = path.resolve();
 
+  // Serve static frontend files
   app.use(express.static(path.join(__dirname, 'frontend', 'dist')));
 
-  // ✅ Express 5–safe SPA fallback
+  // ✅ Express 5 / Node 20 SAFE SPA fallback (NO wildcard)
   app.use((req, res) => {
     res.sendFile(
       path.resolve(__dirname, 'frontend', 'dist', 'index.html')
@@ -50,10 +52,11 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-/* -------------------- Errors -------------------- */
+/* -------------------- Error Handling -------------------- */
 app.use(notFound);
 app.use(errorHandler);
 
+/* -------------------- Server -------------------- */
 app.listen(port, '0.0.0.0', () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${port}`);
 });
